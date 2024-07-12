@@ -42,9 +42,7 @@ public class ClinicRepository {
 		
 		String query = "INSERT INTO patient(patient_name, patient_birthdate, patient_birthplace, blood_type, allergy, patient_gender, alcohol, cigarette, patient_address) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		
-		
-		// MEGNÉZNI KELL E AZ ID!!!
+
 		try {
 			PreparedStatement prstmt = con.prepareStatement(query);
 			prstmt.setString(1, patient.getPatientName());
@@ -60,7 +58,7 @@ public class ClinicRepository {
 			prstmt.close();
 			con.close();
 		} catch (SQLException e) {
-			System.out.println("Hiba a felhasználó hozzáadásakor... " + e.getMessage());
+			System.out.println("Error occurred..." + e.getMessage());
 		}
 	}
 	
@@ -83,36 +81,41 @@ public class ClinicRepository {
 			prstmt.close();
 			con.close();
 		} catch (SQLException e) {
-			System.out.println("Hiba a felhasználó hozzáadásakor... " + e.getMessage());
+			System.out.println("Error occurred..." + e.getMessage());
 		}
 	}
 	
 	public List<Medicine> medicineByPatient(Patient patient) {
 		
 		String query = "";
+
+		return null;
 	}
 	
-	public List<Medicine> requiredPrescription() {  // 1 - true, 0 - false
+	public List<Medicine> requiredPrescription() {
 		
 		String query = "SELECT medicine_id, medicine FROM medicine WHERE prescription = 1";
-		
-		
+
+		return null;
 	}
 	
-	public List<Medicine> expiredMedicines() {  //gyógyszer aminek a havi (?) adagolása lejárt
+	public List<Medicine> expiredMedicines() {
 		
 		String query = "SELECT p.patient_id, p.patient_name, p.patient_birthdate, m.expire_date FROM patient p JOIN clinic c ON p.patient_id = c.patient_id" + 
 				"JOIN medicine m ON m.medicine_id = c.medicine_id WHERE m.expire_date < (SELECT DATE_ADD(CURRENT_DATE, INTERVAL 7 day))";
-		
-		
+
+		return null;
 	}
 	
-//	public List<Patient> olderThan60() {}
+	public List<Patient> olderThan60() {
+
+		return null;
+	}
 	
 	public List<Patient> smokingPatient() {
 		
 		String query = "SELECT patient_id, patient_name FROM patient WHERE cigarette = 1";
-		
-		
+
+		return null;
 	}
 }
